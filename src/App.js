@@ -52,16 +52,15 @@ class App extends React.Component {
         ...this.state.todoList,
         { name: todoName, id: Date.now(), completed: false}
       ]
-    })
-
-  }
+    });
+  };
 
   render() {
     return (
       <div className="App">
         <div className="header">
           <h1>My Todo List for today:</h1>
-          <TodoList addTask={this.addTask} />
+          <TodoForm addTodo={this.addTodo} />
         </div>
         <TodoList 
           todoList={this.state.todoList}

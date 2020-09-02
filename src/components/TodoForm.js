@@ -22,4 +22,20 @@ class TodoForm extends React.Component {
         e.preventDefault();
         this.props.addTodo(this.state.todo)
     }
+
+    render() {
+        return (
+            <form onSubmit={this.handleSubmit} >
+                <input 
+                    type="text"
+                    name="todo"
+                    value={this.state.todo}
+                    onChange={this.handleChanges}
+                />
+                <button>Add</button>
+            </form>
+        )
+    }
 }
+
+export default TodoForm;
