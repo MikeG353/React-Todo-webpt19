@@ -3,6 +3,8 @@ import React from 'react';
 import TodoList from "./components/TodoList"
 import TodoForm from "./components/TodoForm"
 
+import "./todo.css"
+
 // This is the initial state with mock up of a task
 // initialized with completed as false.
 const todoList = [
@@ -36,6 +38,7 @@ class App extends React.Component {
         return todo;
       })
     })
+    window.localStorage.setItem('myTodo', JSON.stringify(this.state.todoList))
   }
 
   clearComplete = () => {
