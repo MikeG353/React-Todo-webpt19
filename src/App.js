@@ -7,7 +7,7 @@ import "./todo.css"
 
 // This is the initial state with mock up of a task
 // initialized with completed as false.
-const todoList = [
+const initialState = [
   {
     name: "Create State",
     id: Date.now(),
@@ -20,9 +20,22 @@ class App extends React.Component {
 
   constructor() {
     super();
-    this.state = {
-      todoList: todoList
-    };
+    // this.state = {
+    //   todoList: JSON.parse(window.localStorage.getItem('myTodo'))
+    // };
+    // if (this.state.todoList.length === 0) {
+    //   this.setState(initialState)
+    // }
+    if (JSON.parse(window.localStorage.getItem('myTodo')) === null) {
+      this.state = {
+        todoList: initialState
+      }
+    }
+    else {
+      this.state = {
+        todoList: JSON.parse(window.localStorage.getItem('myTodo'))
+      }
+    }
   }
 
   // Methods to handle state changes.
@@ -38,7 +51,7 @@ class App extends React.Component {
         return todo;
       })
     })
-    window.localStorage.setItem('myTodo', JSON.stringify(this.state.todoList))
+    // window.localStorage.setItem('myTodo', JSON.stringify(this.state.todoList))
   }
 
   clearComplete = () => {
@@ -47,6 +60,7 @@ class App extends React.Component {
         return !todo.completed;
       })
     })
+    // window.localStorage.setItem('myTodo', JSON.stringify(this.state.todoList))
   }
 
   addTodo = (todoName) => {
@@ -56,7 +70,12 @@ class App extends React.Component {
         { name: todoName, id: Date.now(), completed: false}
       ]
     });
+    // window.localStorage.setItem('myTodo', JSON.stringify(this.state.todoList))
   };
+
+  saveTodo = () => {
+    window.localStorage.setItem('myTodo', JSON.stringify(this.state.todoList))
+  }
 
   render() {
     return (
@@ -69,7 +88,8 @@ class App extends React.Component {
           todoList={this.state.todoList}
           toggleComplete={this.toggleComplete}
           clearComplete={this.clearComplete} 
-        />     
+        />
+        <button onClick={this.saveTodo} >Save</button>     
       </div>
     );
   }

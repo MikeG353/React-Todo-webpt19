@@ -4,7 +4,7 @@ const Todo = (props) => {
 
     return (
         <div 
-            className={`todo${props.todo.complete ? " completed" : ""}`}
+            className={`todo${props.todo.completed ? " completed" : ""}`}
             onClick={() => props.toggleComplete(props.todo.id)}
         >
             <p>{props.todo.name}</p>
